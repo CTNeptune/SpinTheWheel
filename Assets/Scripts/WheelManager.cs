@@ -28,6 +28,7 @@ public class WheelManager : MonoBehaviour
     }
     public SPIN_DIRECTION spinDirection;
     public List<AnimationCurve> spinCurves;
+    public int minSpinTime = 3, maxSpinTime = 4;
     public List<Sprite> itemSprites;
     public UnityEvent onReward;
     public AnimationCurve rewardCurve;
@@ -87,7 +88,7 @@ public class WheelManager : MonoBehaviour
     public void SpinTheWheel()
     {
         PickWinningItem();
-        StartCoroutine(AnimateSpin(UnityEngine.Random.Range(3, 4), winningItem));
+        StartCoroutine(AnimateSpin(UnityEngine.Random.Range(minSpinTime, maxSpinTime), winningItem));
     }
 
     IEnumerator AnimateSpin(float spinTime, WheelItem winningItem)
@@ -227,6 +228,12 @@ public class WheelEditor: Editor
 
         SerializedProperty spinCurves = serializedObject.FindProperty("spinCurves");
         EditorGUILayout.PropertyField(spinCurves, new GUIContent("Spin Curves:"), true);
+
+        SerializedProperty minSpinTime = serializedObject.FindProperty("minSpinTime");
+        EditorGUILayout.PropertyField(minSpinTime, new GUIContent("Minimum Spin Time (in seconds):"), true);
+
+        SerializedProperty maxSpinTime = serializedObject.FindProperty("maxSpinTime");
+        EditorGUILayout.PropertyField(maxSpinTime, new GUIContent("Maximum Spin Time (in seconds):"), true);
 
         SerializedProperty itemSprites = serializedObject.FindProperty("itemSprites");
         EditorGUILayout.PropertyField(itemSprites, new GUIContent("Item Sprites:"), true);
