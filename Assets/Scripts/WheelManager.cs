@@ -57,7 +57,7 @@ public class WheelManager : MonoBehaviour
         Debug.Log("Results from " + wheelResults.itemsWon.Count + " won items:\n" + wheelResults.output);
     }
 
-    public void PickWinningItem(WheelResults wheelResults)
+    public void PickWinningItem(WheelResults wheelResults = null)
     {
         float weightedSum = 0f;
         for (int i = 0; i <= wheelItems.Count - 1; i++)
@@ -78,11 +78,6 @@ public class WheelManager : MonoBehaviour
                 break;
             }
         }
-    }
-
-    public void PickWinningItem()
-    {
-        PickWinningItem(null);
     }
 
     public void SpinTheWheel()
